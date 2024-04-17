@@ -82,7 +82,6 @@ public class GameBoard {
             }
             diagonals.add(diagonal);
         }
-
         return diagonals;
     }
 
