@@ -7,26 +7,44 @@ import edu.wm.cs.cs301.connectn.view.dialogs.AboutDialog;
 import edu.wm.cs.cs301.connectn.view.dialogs.InstructionsDialog;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 
 public class ConnectNFrame {
-    private final JFrame frame;
     private final ConnectNGame model;
+
+    private final JFrame frame;
+    private final GameBoardPanel gameBoardPanel;
 
     public ConnectNFrame(ConnectNGame model) {
         this.model= model;
+        this.gameBoardPanel = new GameBoardPanel();
+
         this.frame = createAndShowGUI();
+
     }
     private JFrame createAndShowGUI() {
-        JFrame frame = new JFrame("ConnectN");
+        JFrame frame = new JFrame("Wordle");
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setJMenuBar(createMenuBar());
         frame.setResizable(false);
-// todo shutdown when X clicked
+//        frame.addWindowListener(new WindowAdapter() {
+//            @Override
+//            public void windowClosing(WindowEvent event) {
+//                shutdown();
+//            }
+//        }); todo figure out
+
+        frame.add(gameBoardPanel, BorderLayout.CENTER);
 
         frame.pack(); // todo what does this do
-        frame.setLocationByPlatform(true); //todo what does this do
+        frame.setLocationByPlatform(true); // todo what does this do
         frame.setVisible(true);
+
+        System.out.println("Frame size: " + frame.getSize());
+
         return frame;
     }
 
