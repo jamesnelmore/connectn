@@ -17,10 +17,12 @@ public class ConnectNFrame {
 
     private final JFrame frame;
     private final GameBoardPanel gameBoardPanel;
+    private final GameButtonPanel gameButtonPanel;
 
     public ConnectNFrame(ConnectNGame model) {
         this.model= model;
         this.gameBoardPanel = new GameBoardPanel(this, model, 500); //todo width
+        this.gameButtonPanel = new GameButtonPanel(model.getColumnCount());
 
         this.frame = createAndShowGUI();
 
@@ -38,6 +40,7 @@ public class ConnectNFrame {
 //        }); todo figure out
 
         frame.add(gameBoardPanel, BorderLayout.CENTER);
+        frame.add(gameButtonPanel.getPanel(), BorderLayout.SOUTH);
 
         frame.pack(); // todo what does this do
         frame.setLocationByPlatform(true); // todo what does this do
