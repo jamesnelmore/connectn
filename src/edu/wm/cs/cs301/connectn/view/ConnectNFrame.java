@@ -22,7 +22,7 @@ public class ConnectNFrame {
     public ConnectNFrame(ConnectNGame model) {
         this.model= model;
         this.gameBoardPanel = new GameBoardPanel(this, model, 500); //todo width
-        this.gameButtonPanel = new GameButtonPanel(model.getColumnCount());
+        this.gameButtonPanel = new GameButtonPanel(this);
 
         this.frame = createAndShowGUI();
 
@@ -91,6 +91,10 @@ public class ConnectNFrame {
 
     JFrame getFrame() {
         return frame;
+    }
+
+    public ConnectNGame getModel() {
+        return this.model;
     }
 }
 
