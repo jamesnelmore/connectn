@@ -73,7 +73,7 @@ public class GameBoardPanel extends JPanel {
                 Rectangle r = grid[row][column];
                 Location location = locationGrid[row][column];
                 drawOutline(g2d, r);
-                drawWordleResponse(g2d, location, r, titleFont);
+                drawCell(g2d, location, r, titleFont);
             }
         }
     }
@@ -92,8 +92,8 @@ public class GameBoardPanel extends JPanel {
         g2d.drawLine(x + width, y, x + width, y + height);
     }
 
-    private void drawWordleResponse(Graphics2D g2d,
-                                    Location location, Rectangle r, Font titleFont) {
+    private void drawCell(Graphics2D g2d,
+                          Location location, Rectangle r, Font titleFont) {
         if (location != null) {
 //            g2d.setColor(wordleResponse.getBackgroundColor());
             g2d.fillRect(r.x, r.y, r.width, r.height);
