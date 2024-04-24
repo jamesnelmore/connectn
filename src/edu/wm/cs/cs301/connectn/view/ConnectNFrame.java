@@ -27,7 +27,7 @@ public class ConnectNFrame {
     }
     private JFrame createAndShowGUI() {
         JFrame frame = new JFrame("Wordle");
-        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setJMenuBar(createMenuBar());
         frame.setResizable(false);
 //        frame.addWindowListener(new WindowAdapter() {
