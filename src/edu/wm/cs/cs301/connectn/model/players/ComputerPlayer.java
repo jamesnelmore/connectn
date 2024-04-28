@@ -21,6 +21,6 @@ public class ComputerPlayer implements Player {
 
     @Override
     public Character getSymbol() {
-        return null;
+        return this.symbol;
     }
 }
