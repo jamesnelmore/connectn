@@ -15,8 +15,8 @@ public class ConnectN {
 	}
 
 	public static void playGame(GameMode gameMode) {
-		Player humanPlayer = new HumanPlayer('x');
-		Player computerPlayer = new ComputerPlayer('o');
+		HumanPlayer humanPlayer = new HumanPlayer('x');
+		ComputerPlayer computerPlayer = new ComputerPlayer('o');
 
 		new ConnectNFrame(new ConnectNGame(humanPlayer, computerPlayer, gameMode));
 	}
