@@ -96,5 +96,9 @@ public class ConnectNFrame {
     public ConnectNGame getModel() {
         return this.model;
     }
+
+    public void repaintPanel() {
+        gameBoardPanel.repaint();
+    }
 }
 

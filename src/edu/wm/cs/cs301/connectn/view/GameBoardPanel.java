@@ -97,9 +97,12 @@ public class GameBoardPanel extends JPanel {
         if (location != null) {
 //            g2d.setColor(wordleResponse.getBackgroundColor());
             g2d.fillRect(r.x, r.y, r.width, r.height);
-//            g2d.setColor(wordleResponse.getForegroundColor());
+            g2d.setColor(Color.BLACK);
             drawCenteredString(g2d,
                     Character.toString(location.getToken()), r, titleFont);
+            if (location.getToken() != ' ') {
+                System.out.println("drew nonempty cell with "+ location.getToken());
+            }
         }
     }
 

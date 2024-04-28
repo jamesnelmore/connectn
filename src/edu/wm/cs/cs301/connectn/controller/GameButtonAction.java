@@ -23,6 +23,7 @@ public class GameButtonAction extends AbstractAction {
         GameBoard.MoveResult moveResult = game.playHumanTurn(move);
 
         handleHumanMoveResult(moveResult);
+        view.repaintPanel();
     }
 
     private void handleHumanMoveResult(GameBoard.MoveResult moveResult) {
