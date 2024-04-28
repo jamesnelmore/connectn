@@ -24,6 +24,7 @@ public class GameButtonAction extends AbstractAction {
 
         handleHumanMoveResult(moveResult);
     }
+
     private void handleHumanMoveResult(GameBoard.MoveResult moveResult) {
         switch (moveResult) {
             case INVALIDMOVE: // in theory not possible
@@ -35,7 +36,6 @@ public class GameButtonAction extends AbstractAction {
                 playersTie();
                 break;
             case MOVEAPPLIED:
-//                todo play for computer
                 GameBoard.MoveResult computerMoveResult = this.game.playComputerTurn();
                 handleComputerMoveResult(computerMoveResult);
                 break;

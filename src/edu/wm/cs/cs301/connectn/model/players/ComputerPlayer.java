@@ -8,7 +8,6 @@ import edu.wm.cs.cs301.connectn.model.GameBoard;
 import java.util.ArrayList;
 
 public class ComputerPlayer implements Player {
-    // TODO implement
     private char symbol;
     public ComputerPlayer(char symbol) {
         this.symbol = symbol;
@@ -16,6 +15,7 @@ public class ComputerPlayer implements Player {
 
     @Override
     public int takeTurn(GameBoard board) {
+        // TODO implement
         return 0;
     }
 

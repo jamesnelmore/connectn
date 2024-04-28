@@ -11,6 +11,7 @@ public class GameButtonPanel {
 
     private final JButton[] buttons;
     private final JPanel panel;
+
     GameButtonPanel(ConnectNFrame frame) {
         this.game = frame.getModel();
         this.buttons = new JButton[game.getColumnCount()];
@@ -19,7 +20,6 @@ public class GameButtonPanel {
 
         for (int i = 0; i < game.getColumnCount(); i++) {
             JButton button = createButton(i);
-            // TODO add action listener
             buttons[i]= button;
             panel.add(button);
         }

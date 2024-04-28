@@ -231,7 +231,7 @@ public class GameBoard {
         if (move >= this.getColumnCount()) {
             return MoveResult.INVALIDMOVE;
         }
-        // find lowest empty spot in column (move)
+        // find the lowest empty spot in column (move)
         // place token in spot if not full
         this.lastPlayedSymbol = symbol;
 
