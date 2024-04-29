@@ -82,10 +82,13 @@ public class ConnectNFrame {
         return menuBar;
     }
 
-//     Getters and Setters
 
     public JFrame getFrame() {
         return frame;
+    }
+
+    public JPanel getGameBoardPanel() {
+        return gameBoardPanel;
     }
 
     public ConnectNGame getModel() {

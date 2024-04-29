@@ -123,4 +123,8 @@ public class GameBoardPanel extends JPanel {
         g2d.setFont(font);
         g2d.drawString(text, x, y);
     }
+
+    public int getCellWidth() {
+        return cellWidth;
+    }
 }

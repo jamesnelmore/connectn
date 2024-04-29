@@ -4,6 +4,7 @@ import edu.wm.cs.cs301.connectn.controller.GameButtonAction;
 import edu.wm.cs.cs301.connectn.model.ConnectNGame;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class GameButtonPanel {
     private final ConnectNGame game;
@@ -16,11 +17,11 @@ public class GameButtonPanel {
         this.game = frame.getModel();
         this.buttons = new JButton[game.getColumnCount()];
         this.frame = frame;
-        this.panel = new JPanel();
+        this.panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 2, 5));
 
         for (int i = 0; i < game.getColumnCount(); i++) {
             JButton button = createButton(i);
-            buttons[i]= button;
+            buttons[i] = button;
             panel.add(button);
         }
     }
@@ -28,6 +29,8 @@ public class GameButtonPanel {
     private JButton createButton(int index) {
         JButton button = new JButton(String.valueOf(index+1));
         button.setActionCommand(String.valueOf(index));
+
+        button.setPreferredSize(new Dimension(64, 30));
         // TODO set width
         // TODO set height
 
