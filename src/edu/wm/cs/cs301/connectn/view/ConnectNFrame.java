@@ -25,6 +25,7 @@ public class ConnectNFrame {
         this.gameButtonPanel = new GameButtonPanel(this);
 
         this.frame = createAndShowGUI();
+        this.showInstructions();
 
     }
     private JFrame createAndShowGUI() {
@@ -32,12 +33,6 @@ public class ConnectNFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setJMenuBar(createMenuBar());
         frame.setResizable(false);
-//        frame.addWindowListener(new WindowAdapter() {
-//            @Override
-//            public void windowClosing(WindowEvent event) {
-//                shutdown();
-//            }
-//        }); todo figure out
 
         frame.add(gameBoardPanel, BorderLayout.CENTER);
         frame.add(gameButtonPanel.getPanel(), BorderLayout.SOUTH);
@@ -60,7 +55,7 @@ public class ConnectNFrame {
         menuBar.add(helpMenu);
 
         JMenuItem instructionsItem = new JMenuItem("Instructions...");
-        instructionsItem.addActionListener(event -> new InstructionsDialog(this));
+        instructionsItem.addActionListener(event -> showInstructions());
         helpMenu.add(instructionsItem);
 
         JMenuItem aboutItem = new JMenuItem("About...");
@@ -89,7 +84,7 @@ public class ConnectNFrame {
 
 //     Getters and Setters
 
-    JFrame getFrame() {
+    public JFrame getFrame() {
         return frame;
     }
 
@@ -99,6 +94,10 @@ public class ConnectNFrame {
 
     public void repaintPanel() {
         gameBoardPanel.repaint();
+    }
+
+    public void showInstructions() {
+        new InstructionsDialog(this);
     }
 }
 

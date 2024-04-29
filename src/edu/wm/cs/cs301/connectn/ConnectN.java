@@ -18,6 +18,6 @@ public class ConnectN {
 		HumanPlayer humanPlayer = new HumanPlayer('x');
 		ComputerPlayer computerPlayer = new ComputerPlayer('o');
 
-		new ConnectNFrame(new ConnectNGame(humanPlayer, computerPlayer, gameMode));
+		ConnectNFrame connectNFrame = new ConnectNFrame(new ConnectNGame(humanPlayer, computerPlayer, gameMode));
 	}
 }
