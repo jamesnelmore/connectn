@@ -9,6 +9,8 @@ import edu.wm.cs.cs301.connectn.view.ConnectNFrame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class PlayAgainDialog extends JDialog {
     private final ConnectNFrame oldFrame;
@@ -18,6 +20,13 @@ public class PlayAgainDialog extends JDialog {
         super(oldFrame.getFrame(), "Play Again", true);
         this.oldFrame = oldFrame;
         this.gameResult = gameResult;
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
 
         add(createMainPanel(), BorderLayout.NORTH);
 
