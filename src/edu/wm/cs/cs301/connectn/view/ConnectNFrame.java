@@ -45,7 +45,7 @@ public class ConnectNFrame {
         return frame;
     }
 
-    private JMenuBar createMenuBar() {
+    private JMenuBar createMenuBar() { // todo break out into own class
         JMenuBar menuBar = new JMenuBar();
 
 //    Menu item Help
@@ -78,6 +78,10 @@ public class ConnectNFrame {
             });
             difficultyMenu.add(item);
         }
+
+        JMenuItem exitButton = new JMenuItem("Exit");
+        exitButton.addActionListener(event -> System.exit(0));
+        menuBar.add(exitButton);
         return menuBar;
     }
 
