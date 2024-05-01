@@ -5,6 +5,7 @@ import edu.wm.cs.cs301.connectn.model.GameMode;
 import edu.wm.cs.cs301.connectn.view.dialogs.AboutDialog;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Menu extends JMenuBar {
     private final ConnectNFrame view;
@@ -15,6 +16,7 @@ public class Menu extends JMenuBar {
 
         this.add(createHelpMenu());
         this.add(createDifficultyMenu());
+        this.add(createSpacer());
         this.add(createExitButton());
     }
 
@@ -52,5 +54,12 @@ public class Menu extends JMenuBar {
         JMenuItem exitButton = new JMenuItem("Exit");
         exitButton.addActionListener(event -> System.exit(0));
         return exitButton;
+    }
+
+    private JLabel createSpacer() {
+        JLabel spacer = new JLabel();
+        spacer.setPreferredSize(new Dimension(600, 20)); // Set preferred size for spacer
+        spacer.setEnabled(false);
+        return spacer;
     }
 }
