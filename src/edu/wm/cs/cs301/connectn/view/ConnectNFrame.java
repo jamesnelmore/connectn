@@ -18,11 +18,13 @@ public class ConnectNFrame {
     private final JFrame frame;
     private final GameBoardPanel gameBoardPanel;
     private final GameButtonPanel gameButtonPanel;
+    private final MoveCounterPanel moveCounterPanel;
 
     public ConnectNFrame(ConnectNGame model) {
         this.model= model;
         this.gameBoardPanel = new GameBoardPanel(this, model, 700); //todo width
         this.gameButtonPanel = new GameButtonPanel(this);
+        this.moveCounterPanel = new MoveCounterPanel();
 
         this.frame = createAndShowGUI();
 
@@ -32,7 +34,8 @@ public class ConnectNFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setJMenuBar(new Menu(this));
         frame.setResizable(false);
-
+        
+        frame.add(moveCounterPanel, BorderLayout.NORTH);
         frame.add(gameBoardPanel, BorderLayout.CENTER);
         frame.add(gameButtonPanel.getPanel(), BorderLayout.SOUTH);
 
@@ -43,6 +46,33 @@ public class ConnectNFrame {
         System.out.println("Frame size: " + frame.getSize());
 
         return frame;
+    }
+    
+    private class MoveCounterPanel extends JPanel {
+    	private static final long serialVersionUID = 1696508320122726885L;
+		private int turns;
+    	
+    	public MoveCounterPanel() {
+    	this.setPreferredSize(new Dimension(30, 40));
+    	turns = 0;
+    	}
+    	
+    	@Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            g.setColor(Color.BLACK); // Set the text color
+            Dimension panelSize = this.getSize();
+            int x = panelSize.width / 2;
+            int y = panelSize.height / 2;
+            
+            g.setFont(AppFont.TEXT.font);
+            g.drawString("Turn " + turns, x, y); // Draw the text at position (10, 50)
+        }
+    	public void incrementCounter() {
+    		turns += 1;
+    		this.repaint();
+    	}
+    	
     }
 
     public JFrame getFrame() {
@@ -59,6 +89,7 @@ public class ConnectNFrame {
 
     public void repaintPanel() {
         gameBoardPanel.repaint();
+        moveCounterPanel.incrementCounter();
     }
 
     public void showInstructions() {

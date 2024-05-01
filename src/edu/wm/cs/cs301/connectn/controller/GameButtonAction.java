@@ -9,7 +9,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 public class GameButtonAction extends AbstractAction {
-    private final ConnectNFrame view;
+    private static final long serialVersionUID = -8673720832690380128L;
+	private final ConnectNFrame view;
     private final ConnectNGame game;
     public GameButtonAction(ConnectNFrame view, ConnectNGame game) {
         this.view = view;
