@@ -25,7 +25,6 @@ public class ConnectNFrame {
         this.gameButtonPanel = new GameButtonPanel(this);
 
         this.frame = createAndShowGUI();
-        this.showInstructions();
 
     }
     private JFrame createAndShowGUI() {

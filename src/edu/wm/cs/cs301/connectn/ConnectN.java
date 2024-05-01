@@ -11,13 +11,13 @@ public class ConnectN {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		playGame(GameMode.MEDIUM);
+		playGame(GameMode.MEDIUM).showInstructions();
 	}
 
-	public static void playGame(GameMode gameMode) {
+	public static ConnectNFrame playGame(GameMode gameMode) {
 		HumanPlayer humanPlayer = new HumanPlayer('x');
 		ComputerPlayer computerPlayer = new ComputerPlayer('o');
 
-		ConnectNFrame connectNFrame = new ConnectNFrame(new ConnectNGame(humanPlayer, computerPlayer, gameMode));
+		return new ConnectNFrame(new ConnectNGame(humanPlayer, computerPlayer, gameMode));
 	}
 }
