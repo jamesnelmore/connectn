@@ -24,6 +24,12 @@ public class ConnectNGame {
         this.board = new GameBoard(this.gameMode.rows, this.gameMode.columns, this.gameMode.n);
     }
 
+    public enum GameResult {
+        WIN,
+        LOSE,
+        TIE
+    }
+
     public MoveResult playHumanTurn(int move) {
         return this.board.applyTurn(move, humanPlayer.getSymbol());
     }

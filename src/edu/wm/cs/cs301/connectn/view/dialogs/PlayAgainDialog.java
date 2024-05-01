@@ -1,6 +1,7 @@
 package edu.wm.cs.cs301.connectn.view.dialogs;
 
 import edu.wm.cs.cs301.connectn.ConnectN;
+import edu.wm.cs.cs301.connectn.model.ConnectNGame;
 import edu.wm.cs.cs301.connectn.model.GameBoard;
 import edu.wm.cs.cs301.connectn.model.GameMode;
 import edu.wm.cs.cs301.connectn.view.AppFont;
@@ -11,10 +12,12 @@ import java.awt.*;
 
 public class PlayAgainDialog extends JDialog {
     private final ConnectNFrame oldFrame;
+    ConnectNGame.GameResult gameResult;
 
-    public PlayAgainDialog(ConnectNFrame oldFrame, GameBoard.MoveResult MoveResult) {
+    public PlayAgainDialog(ConnectNFrame oldFrame, ConnectNGame.GameResult gameResult) {
         super(oldFrame.getFrame(), "Play Again", true);
         this.oldFrame = oldFrame;
+        this.gameResult = gameResult;
 
         add(createMainPanel(), BorderLayout.NORTH);
 
@@ -39,7 +42,7 @@ public class PlayAgainDialog extends JDialog {
         JPanel panel = new JPanel(new FlowLayout());
         panel.setBorder(BorderFactory.createEmptyBorder(0, 5, 5, 5));
 
-        JLabel label = new JLabel("You Win!");
+        JLabel label = new JLabel(getMessage());
         label.setFont(AppFont.TITLE.font);
         panel.add(label);
 
@@ -62,16 +65,18 @@ public class PlayAgainDialog extends JDialog {
     }
 
     private void playAgain() {
-        // dispose of old frame
-//        make new game
-//        close dialog
-
         GameMode gameMode = this.oldFrame.getModel().getGameMode();
         ConnectN.playGame(gameMode);
 
         oldFrame.getFrame().dispose();
         this.dispose();
+    }
 
-
+    private String getMessage() {
+        return switch (gameResult) {
+            case WIN -> "You win!";
+            case LOSE -> "You lose :(";
+            case TIE -> "Tie!";
+        };
     }
 }
