@@ -30,61 +30,20 @@ public class ConnectNFrame {
     private JFrame createAndShowGUI() {
         JFrame frame = new JFrame("Wordle");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setJMenuBar(createMenuBar());
+        frame.setJMenuBar(new Menu(this));
         frame.setResizable(false);
 
         frame.add(gameBoardPanel, BorderLayout.CENTER);
         frame.add(gameButtonPanel.getPanel(), BorderLayout.SOUTH);
 
-        frame.pack(); // todo what does this do
-        frame.setLocationByPlatform(true); // todo what does this do
+        frame.pack();
+        frame.setLocationByPlatform(true);
         frame.setVisible(true);
 
         System.out.println("Frame size: " + frame.getSize());
 
         return frame;
     }
-
-    private JMenuBar createMenuBar() { // todo break out into own class
-        JMenuBar menuBar = new JMenuBar();
-
-//    Menu item Help
-
-        JMenu helpMenu = new JMenu("Help");
-        menuBar.add(helpMenu);
-
-        JMenuItem instructionsItem = new JMenuItem("Instructions...");
-        instructionsItem.addActionListener(event -> showInstructions());
-        helpMenu.add(instructionsItem);
-
-        JMenuItem aboutItem = new JMenuItem("About...");
-        aboutItem.addActionListener(event -> new AboutDialog(this));
-        helpMenu.add(aboutItem);
-
-//    Menu item Difficulty
-
-        JMenu difficultyMenu = new JMenu("Difficulty");
-        menuBar.add(difficultyMenu);
-
-        for (GameMode mode : GameMode.values()) {
-            JMenuItem item = new JMenuItem(mode.name);
-            item.addActionListener(event -> {
-                System.out.println("Setting game mode: " + mode.name);
-//    		Close current game
-                getFrame().dispose();
-                ConnectN.playGame(mode);
-//    		shutdown();
-//    		Start new game
-            });
-            difficultyMenu.add(item);
-        }
-
-        JMenuItem exitButton = new JMenuItem("Exit");
-        exitButton.addActionListener(event -> System.exit(0));
-        menuBar.add(exitButton);
-        return menuBar;
-    }
-
 
     public JFrame getFrame() {
         return frame;
