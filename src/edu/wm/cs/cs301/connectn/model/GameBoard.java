@@ -226,8 +226,6 @@ public class GameBoard {
          * @return true if a valid move was passed, otherwise false
          */
 
-        System.out.println("Applying move for " + symbol + " at " + move);
-
         if (move >= this.getColumnCount()) {
             return MoveResult.INVALIDMOVE;
         }

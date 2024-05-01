@@ -100,9 +100,6 @@ public class GameBoardPanel extends JPanel {
             g2d.setColor(Color.BLACK);
             drawCenteredString(g2d,
                     Character.toString(location.getToken()), r, titleFont);
-            if (location.getToken() != ' ') {
-                System.out.println("drew nonempty cell with "+ location.getToken());
-            }
         }
     }
 
