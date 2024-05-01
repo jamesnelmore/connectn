@@ -3,6 +3,7 @@ package edu.wm.cs.cs301.connectn.controller;
 import edu.wm.cs.cs301.connectn.model.ConnectNGame;
 import edu.wm.cs.cs301.connectn.model.GameBoard;
 import edu.wm.cs.cs301.connectn.view.ConnectNFrame;
+import edu.wm.cs.cs301.connectn.view.dialogs.PlayAgainDialog;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -27,14 +28,15 @@ public class GameButtonAction extends AbstractAction {
     }
 
     private void handleHumanMoveResult(GameBoard.MoveResult moveResult) {
+        ConnectNGame.GameResult gameResult;
         switch (moveResult) {
             case INVALIDMOVE: // in theory not possible
                 throw new IllegalStateException("Invalid move");
             case GAMEWON:
-                humanWins();
+                handleGameEnd(ConnectNGame.GameResult.WIN);
                 break;
             case TIE:
-                playersTie();
+                handleGameEnd(ConnectNGame.GameResult.TIE);
                 break;
             case MOVEAPPLIED:
                 GameBoard.MoveResult computerMoveResult = this.game.playComputerTurn();
@@ -46,14 +48,15 @@ public class GameButtonAction extends AbstractAction {
     }
 
     private void handleComputerMoveResult(GameBoard.MoveResult computerMoveResult) {
+
         switch (computerMoveResult) {
             case INVALIDMOVE:
                 throw new RuntimeException("Computer made illegal move");
             case GAMEWON:
-                humanLoses();
+                handleGameEnd(ConnectNGame.GameResult.LOSE);
                 break;
             case TIE:
-                playersTie();
+                handleGameEnd(ConnectNGame.GameResult.TIE);
             case MOVEAPPLIED:
                 break; // no action needed, but case statements over enums should be exhaustive
             default:
@@ -61,18 +64,7 @@ public class GameButtonAction extends AbstractAction {
         }
     }
 
-    private void humanWins() {
-        // TODO fill out
-        System.out.println("Human Wins!");
-    }
-
-    private void humanLoses() {
-        // TODO fill out
-        System.out.println("Human Loses :(");
-    }
-
-    private void playersTie() {
-        // TODO fill out
-        System.out.println("Players tie");
+    private void handleGameEnd(ConnectNGame.GameResult gameResult) {
+        new PlayAgainDialog(view, gameResult);
     }
     }
