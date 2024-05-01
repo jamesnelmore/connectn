@@ -43,6 +43,10 @@ public class ConnectNGame {
         return gameMode.rows;
     }
 
+    public GameMode getGameMode() {
+        return this.gameMode;
+    }
+
     public Location[][] getLocationGrid() {
         return board.board;
     }
