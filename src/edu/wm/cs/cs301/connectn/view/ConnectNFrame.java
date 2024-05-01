@@ -21,7 +21,7 @@ public class ConnectNFrame {
 
     public ConnectNFrame(ConnectNGame model) {
         this.model= model;
-        this.gameBoardPanel = new GameBoardPanel(this, model, 500); //todo width
+        this.gameBoardPanel = new GameBoardPanel(this, model, 700); //todo width
         this.gameButtonPanel = new GameButtonPanel(this);
 
         this.frame = createAndShowGUI();
