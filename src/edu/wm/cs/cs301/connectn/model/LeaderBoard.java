@@ -76,20 +76,13 @@ public class LeaderBoard implements Serializable {
 	}
 	
 	public void updateScore(GameMode gameMode, int candidateScore, String candidateName) {
-		int candidateIndex = 3;
-		switch (gameMode) {
-		case SMALL:
-			candidateIndex = 0;
-			break;
-		case MEDIUM:
-			candidateIndex = 1;
-			break;
-		case LARGE:
-			candidateIndex = 2;
-			break;
-		}
-		
-		if(candidateScore < this.highScores[candidateIndex] | this.highScores[candidateIndex] == 0) {
+		int candidateIndex = switch (gameMode) {
+            case SMALL -> 0;
+            case MEDIUM -> 1;
+            case LARGE -> 2;
+        };
+
+        if(candidateScore < this.highScores[candidateIndex] | this.highScores[candidateIndex] == 0) {
 			int previousScore = this.highScores[candidateIndex];
 			System.out.println("New High Score!");
 			if (previousScore != 0) {
@@ -102,8 +95,18 @@ public class LeaderBoard implements Serializable {
 		this.saveBoard();
 	}
 	
-	public int[] getHighScore() {
+	public int[] getHighScores() {
 		return highScores;
+	}
+	
+	public int getHighScore(GameMode gameMode) {
+		int index = switch (gameMode) {
+		case SMALL -> 0;
+		case MEDIUM -> 1;
+		case LARGE -> 2;
+		};
+		
+		return getHighScores()[index];
 	}
 	
 	public String[] getNames() {

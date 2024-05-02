@@ -1,7 +1,10 @@
 package edu.wm.cs.cs301.connectn.controller;
 
 import edu.wm.cs.cs301.connectn.model.ConnectNGame;
+import edu.wm.cs.cs301.connectn.model.ConnectNGame.GameResult;
 import edu.wm.cs.cs301.connectn.model.GameBoard;
+import edu.wm.cs.cs301.connectn.model.GameMode;
+import edu.wm.cs.cs301.connectn.model.LeaderBoard;
 import edu.wm.cs.cs301.connectn.view.ConnectNFrame;
 import edu.wm.cs.cs301.connectn.view.dialogs.PlayAgainDialog;
 
@@ -66,6 +69,13 @@ public class GameButtonAction extends AbstractAction {
     }
 
     private void handleGameEnd(ConnectNGame.GameResult gameResult) {
-        new PlayAgainDialog(view, gameResult);
+    	GameMode gameMode = game.getGameMode();
+    	int turns = game.getTurn();
+    	int oldHighScore = LeaderBoard.getLeaderBoard().getHighScore(gameMode);
+    	
+    	Boolean showHighScore = (gameResult == GameResult.WIN)  && (turns < oldHighScore);
+    	
+        PlayAgainDialog playAgainDialog = new PlayAgainDialog(view, gameResult, true); // TODO  should be showHighScore
+        
     }
     }

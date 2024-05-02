@@ -54,4 +54,8 @@ public class ConnectNGame {
     public Location[][] getLocationGrid() {
         return board.board;
     }
+    
+    public int getTurn() {
+    	return board.getTurn();
+    }
 }

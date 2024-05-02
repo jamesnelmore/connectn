@@ -38,7 +38,7 @@ public class LeaderBoardDialog extends JDialog {
         String[] columnNames = {"Difficulty", "Name", "Turns"};
         LeaderBoard l = LeaderBoard.getLeaderBoard();
         String[] names = l.getNames();
-        int[] scores = l.getHighScore();
+        int[] scores = l.getHighScores();
         Object[][] data = {
             {"Small",  names[0], scores[0]},
             {"Medium", names[1], scores[1]},
