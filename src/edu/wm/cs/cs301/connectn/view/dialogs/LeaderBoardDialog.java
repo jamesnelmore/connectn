@@ -19,12 +19,15 @@ import edu.wm.cs.cs301.connectn.view.ConnectNFrame;
 
 
 public class LeaderBoardDialog extends JDialog {
+	private final MainPanel mainPanel;
 	
 	public LeaderBoardDialog(ConnectNFrame view) {
-		super(view.getFrame(), "Instructions", true);
-        
+//		super(view.getFrame(), "Leaderboard", true);
+		super();
+		this.setTitle("Leaderboard");
+        mainPanel = new MainPanel();
 
-        add(createMainPanel(), BorderLayout.CENTER);
+        add(mainPanel, BorderLayout.CENTER);
         
 
         pack();
@@ -32,38 +35,49 @@ public class LeaderBoardDialog extends JDialog {
         setVisible(true);
 	}
 	
-
-	private JPanel createMainPanel() {
-		// Define data for the table.
-        String[] columnNames = {"Difficulty", "Name", "Turns"};
-        LeaderBoard l = LeaderBoard.getLeaderBoard();
-        String[] names = l.getNames();
-        int[] scores = l.getHighScores();
-        Object[][] data = {
-            {"Small",  names[0], scores[0]},
-            {"Medium", names[1], scores[1]},
-            {"Large",  names[2], scores[2]},
-        };
-
-        // Create a table with the data and column names.
-        JTable table = new JTable(data, columnNames);
-       
-
-        // Create a panel and add the table to it.
-        JPanel mainPanel = new JPanel(new BorderLayout());
-        
-        mainPanel.add(table, BorderLayout.CENTER);
-        
-        JLabel title = new JLabel("Instructions");
-        title.setHorizontalAlignment(SwingConstants.CENTER);
-        title.setFont(new Font("Dialog", Font.BOLD, 20));
-        
-        mainPanel.add(title, BorderLayout.NORTH);
+	private class MainPanel extends JPanel {
+		MainPanel() {
+			this.setLayout(new BorderLayout());
+			this.setPreferredSize(new Dimension(300, 100));
+		}
 		
-		return mainPanel;
+		protected void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			
+			String[] columnNames = {"Difficulty", "Name", "Turns"};
+	        LeaderBoard l = LeaderBoard.getLeaderBoard();
+	        String[] names = l.getNames();
+	        int[] scores = l.getHighScores();
+	        Object[][] data = {
+	            {"Small",  ifNull(names[0]), ifZero(scores[0])}, // TODO handle null cases
+	            {"Medium", ifNull(names[1]), ifZero(scores[1])},
+	            {"Large",  ifNull(names[2]), ifZero(scores[2])},
+	        };
+
+	        // Create a table with the data and column names.
+	        JTable table = new JTable(data, columnNames);
+	        
+	        this.add(table, BorderLayout.CENTER);
+	        
+	        JLabel title = new JLabel("Leaderboard");
+	        title.setHorizontalAlignment(SwingConstants.CENTER);
+	        title.setFont(new Font("Dialog", Font.BOLD, 20));
+	        
+	        this.add(title, BorderLayout.NORTH);
+			
+		}
+	}
+//		 TODO make dialog observe the model
+
+	private String ifNull(String baseString) {
+		return (baseString != "") ? baseString : "No high score";
+	}
+	
+	private String ifZero(int baseInt) {
+		return (baseInt != 0) ? String.valueOf(baseInt) : "-";
 	}
 	
 	public void update() {
-		add(createMainPanel(), BorderLayout.CENTER);
+		mainPanel.repaint();
 	}
 }

@@ -77,5 +77,7 @@ public class GameButtonAction extends AbstractAction {
     	
         PlayAgainDialog playAgainDialog = new PlayAgainDialog(view, gameResult, true); // TODO  should be showHighScore
         
+        
+        
     }
     }
