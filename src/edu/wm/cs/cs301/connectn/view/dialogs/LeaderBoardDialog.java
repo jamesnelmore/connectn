@@ -6,6 +6,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -20,22 +22,25 @@ import edu.wm.cs.cs301.connectn.view.ConnectNFrame;
 
 public class LeaderBoardDialog extends JDialog {
 	private final MainPanel mainPanel;
+	private final ConnectNFrame view;
 	
 	public LeaderBoardDialog(ConnectNFrame view) {
 //		super(view.getFrame(), "Leaderboard", true);
 		super();
 		this.setTitle("Leaderboard");
+		this.view = view;
         mainPanel = new MainPanel();
-
+        
         add(mainPanel, BorderLayout.CENTER);
         
-
         pack();
         setLocationRelativeTo(view.getFrame());
         setVisible(true);
 	}
 	
 	private class MainPanel extends JPanel {
+		private static final long serialVersionUID = 7400100091428159227L;
+
 		MainPanel() {
 			this.setLayout(new BorderLayout());
 			this.setPreferredSize(new Dimension(300, 100));
@@ -49,13 +54,19 @@ public class LeaderBoardDialog extends JDialog {
 	        String[] names = l.getNames();
 	        int[] scores = l.getHighScores();
 	        Object[][] data = {
-	            {"Small",  ifNull(names[0]), ifZero(scores[0])}, // TODO handle null cases
+	            {"Small",  ifNull(names[0]), ifZero(scores[0])},
 	            {"Medium", ifNull(names[1]), ifZero(scores[1])},
 	            {"Large",  ifNull(names[2]), ifZero(scores[2])},
 	        };
 
-	        // Create a table with the data and column names.
-	        JTable table = new JTable(data, columnNames);
+	        JTable table = new JTable(data, columnNames){
+	            private static final long serialVersionUID = 5719950460227039719L;
+
+				@Override
+	            public boolean isCellEditable(int row, int column) {
+	                return false;
+	                }
+	            };
 	        
 	        this.add(table, BorderLayout.CENTER);
 	        
@@ -65,9 +76,9 @@ public class LeaderBoardDialog extends JDialog {
 	        
 	        this.add(title, BorderLayout.NORTH);
 			
+	        System.out.println("Repainted");
 		}
 	}
-//		 TODO make dialog observe the model
 
 	private String ifNull(String baseString) {
 		return (baseString != "") ? baseString : "No high score";
@@ -75,9 +86,5 @@ public class LeaderBoardDialog extends JDialog {
 	
 	private String ifZero(int baseInt) {
 		return (baseInt != 0) ? String.valueOf(baseInt) : "-";
-	}
-	
-	public void update() {
-		mainPanel.repaint();
 	}
 }

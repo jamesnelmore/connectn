@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.io.File;
 
 public class LeaderBoard implements Serializable {
@@ -20,12 +18,10 @@ public class LeaderBoard implements Serializable {
 	private static LeaderBoard instance;
 	private int[] highScores;
 	private String[] names;
-	private PropertyChangeSupport support;
 	
 	private LeaderBoard() {
 		highScores  = new int[] {0,0,0};
 		names = new String[] {"", "", ""};
-		support = new PropertyChangeSupport(this);
 	}
 	
 	public static LeaderBoard getLeaderBoard() {
@@ -55,10 +51,6 @@ public class LeaderBoard implements Serializable {
 		}
 		return instance;
 	}
-	
-	public void addPropertyChangeListener(PropertyChangeListener propertyChangeListener) {
-        support.addPropertyChangeListener(propertyChangeListener);
-    }
 	
 	private void saveBoard() {
 		try {

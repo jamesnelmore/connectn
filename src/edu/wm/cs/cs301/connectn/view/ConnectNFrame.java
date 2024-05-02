@@ -20,16 +20,24 @@ public class ConnectNFrame {
     private final GameBoardPanel gameBoardPanel;
     private final GameButtonPanel gameButtonPanel;
     private final MoveCounterPanel moveCounterPanel;
+    private LeaderBoardDialog leaderBoardDialog;
 
     public ConnectNFrame(ConnectNGame model) {
         this.model= model;
-        this.gameBoardPanel = new GameBoardPanel(this, model, 700); //todo width
+        this.gameBoardPanel = new GameBoardPanel(this, model, 700);
         this.gameButtonPanel = new GameButtonPanel(this);
         this.moveCounterPanel = new MoveCounterPanel();
 
         this.frame = createAndShowGUI();
         
-        new LeaderBoardDialog(this);
+        this.leaderBoardDialog = new LeaderBoardDialog(this);
+        
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                leaderBoardDialog.dispose();
+            }
+        });
 
     }
     private JFrame createAndShowGUI() {
@@ -63,13 +71,13 @@ public class ConnectNFrame {
     	@Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-            g.setColor(Color.BLACK); // Set the text color
+            g.setColor(Color.BLACK);
             Dimension panelSize = this.getSize();
             int x = panelSize.width / 2;
             int y = panelSize.height / 2;
             
             g.setFont(AppFont.TEXT.font);
-            g.drawString("Turn " + turns, x, y); // Draw the text at position (10, 50)
+            g.drawString("Turn " + turns, x, y);
         }
     	
     	public void incrementCounter() {
@@ -78,6 +86,7 @@ public class ConnectNFrame {
     	}
     	
     }
+    
 
     public JFrame getFrame() {
         return frame;
@@ -89,6 +98,10 @@ public class ConnectNFrame {
 
     public ConnectNGame getModel() {
         return this.model;
+    }
+    
+    public LeaderBoardDialog getLeaderBoardDialog() {
+    	return this.leaderBoardDialog;
     }
 
     public void repaintPanel() {

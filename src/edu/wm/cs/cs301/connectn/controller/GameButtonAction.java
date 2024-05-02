@@ -24,7 +24,6 @@ public class GameButtonAction extends AbstractAction {
     public void actionPerformed(ActionEvent e) {
         int move = Integer.parseInt(e.getActionCommand());
         System.out.println("Heard button " + move);
-        // todo ensure player can't take 2 turns in a row really quickly
         GameBoard.MoveResult moveResult = game.playHumanTurn(move);
 
         handleHumanMoveResult(moveResult);
@@ -73,11 +72,8 @@ public class GameButtonAction extends AbstractAction {
     	int turns = game.getTurn();
     	int oldHighScore = LeaderBoard.getLeaderBoard().getHighScore(gameMode);
     	
-    	Boolean showHighScore = (gameResult == GameResult.WIN)  && (turns < oldHighScore);
+    	Boolean showHighScore = (gameResult == GameResult.WIN)  && (turns < oldHighScore || oldHighScore == 0);
     	
-        PlayAgainDialog playAgainDialog = new PlayAgainDialog(view, gameResult, true); // TODO  should be showHighScore
-        
-        
-        
-    }
+        PlayAgainDialog playAgainDialog = new PlayAgainDialog(view, gameResult, showHighScore);
+        }
     }

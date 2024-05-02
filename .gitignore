@@ -39,3 +39,4 @@ hs_err_pid*
 # Mac specific
 .DS_Store
 /bin/
+resources/leaderboard.ser

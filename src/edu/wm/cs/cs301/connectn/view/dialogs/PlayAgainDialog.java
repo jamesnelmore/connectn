@@ -14,18 +14,16 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class PlayAgainDialog extends JDialog {
-    private final ConnectNFrame oldFrame;
+    private static final long serialVersionUID = -7551063657412615662L;
+	private final ConnectNFrame oldFrame;
     private final ConnectNGame model;
-    private final Boolean newHighScore;
     ConnectNGame.GameResult gameResult;
 
     public PlayAgainDialog(ConnectNFrame oldFrame, ConnectNGame.GameResult gameResult, boolean newHighScore) {
-        super(oldFrame.getFrame(), "Play Again", true);
+        super(oldFrame.getFrame(), "Play Again", false);
         this.oldFrame = oldFrame;
         this.gameResult = gameResult;
         this.model = oldFrame.getModel();
-        this.newHighScore = newHighScore;
-
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -67,7 +65,6 @@ public class PlayAgainDialog extends JDialog {
     private JLabel createMoveText() {
     	int turns = model.getTurn();
     	JLabel text = new JLabel("In " + turns + " Moves");
-//    	text.setHorizontalAlignment(JLabel.CENTER);
     	
     	return text;
     }
@@ -76,9 +73,9 @@ public class PlayAgainDialog extends JDialog {
     	JPanel panel = new JPanel();
     	panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
     	
-    	JLabel label = new JLabel("New High Score! Enter name:");
+    	JLabel label = new JLabel("New High Score! Enter name and press enter:");
     	label.setHorizontalAlignment(JLabel.CENTER);
-        label.setAlignmentX(Component.CENTER_ALIGNMENT); // Ensure it centers in the container
+        label.setAlignmentX(Component.CENTER_ALIGNMENT);
     	panel.add(label);
     	
     	JTextField nameBox = new JTextField(15);
