@@ -24,6 +24,10 @@ public class LeaderBoard implements Serializable {
 		names = new String[] {"", "", ""};
 	}
 	
+	/**
+	 * Gets leaderboard, loading from file or creating a new one if does not exist.
+	 * @return LeaderBoard
+	 */
 	public static LeaderBoard getLeaderBoard() {
 		if (instance == null) {
 			FileInputStream fileIn;
@@ -52,6 +56,9 @@ public class LeaderBoard implements Serializable {
 		return instance;
 	}
 	
+	/**
+	 * Save board to file.
+	 */
 	private void saveBoard() {
 		try {
 			FileOutputStream fileOut = new FileOutputStream(LeaderBoard.filePath);
@@ -75,6 +82,12 @@ public class LeaderBoard implements Serializable {
 		}
 	}
 	
+	/**
+	 * Updates highScore with new name and score if new score is lower.
+	 * @param gameMode mode the score was earned in
+	 * @param candidateScore number of turns to victory
+	 * @param candidateName person who won
+	 */
 	public void updateScore(GameMode gameMode, int candidateScore, String candidateName) {
 		int candidateIndex = switch (gameMode) {
             case SMALL -> 0;

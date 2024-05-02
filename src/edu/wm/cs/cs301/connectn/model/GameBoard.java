@@ -51,10 +51,10 @@ public class GameBoard {
     }
 
     // Getters
+    /**
+     * @return transposed game board
+     */
     public Location[][] getColumns() {
-        /**
-         * @return transposed game board
-         */
         Location[][] transposedBoard = new Location[this.getColumnCount()][this.getRowCount()];
         for (int i = 0; i < this.getRowCount(); i++) {
             for (int j = 0; j < this.getColumnCount(); j++) {
@@ -65,6 +65,10 @@ public class GameBoard {
     }
 
 
+    /**
+     * 
+     * @return List of diagonals on board.
+     */
     public ArrayList<ArrayList<Location>> getDiagonals() {
 //		start at top left corner and add each diagonal to a list
 //		Do the same starting at the top right
@@ -105,6 +109,9 @@ public class GameBoard {
         return " " + Character.toString(divider).repeat((this.getColumnCount() * 4) + 1) + " ";
     }
 
+    /**
+     * Prints a string representation of the gameboard. Useful for debugging.
+     */
     public void displayBoard() {
         List<String> lines = new ArrayList<String>(); // lines that will be printed
 
@@ -148,6 +155,10 @@ public class GameBoard {
         return java.util.Arrays.deepToString(this.board);
     }
 
+    /**
+     * 
+     * @return true if there is a winner, false otherwise. Note that when there is a winner, it must be the last player to make a move.
+     */
     public Boolean checkForWinner() {
         // iterate through rows and count
         // If count
@@ -177,6 +188,13 @@ public class GameBoard {
         return false;
     }
 
+    /**
+     * Checks if row contains N consecutive instances of symbol.
+     * @param row row to check
+     * @param N number of instances
+     * @param symbol symbol to look for
+     * @return true if row contains N consecutive instances of symbol.
+     */
     public static Boolean isNingOrder(ArrayList<Location> row, int N, char symbol) {
         if (row.size() < N) { return false; }
 
@@ -195,6 +213,13 @@ public class GameBoard {
         return false;
     }
 
+    /**
+     * Checks if row contains N consecutive instances of symbol.
+     * @param row row to check
+     * @param N number of instances
+     * @param symbol symbol to look for
+     * @return true if row contains N consecutive instances of symbol.
+     */
     public static Boolean isNingOrder(Location[] row, int N, char symbol) {
         /*
          * Returns true if row has at least N symbols in next to each other, else false.
@@ -218,14 +243,13 @@ public class GameBoard {
         return this.isWinningOrder(rowList);
     }
 
+    /**
+     * "Drops" given symbol down column move
+     * @param  move   the 0-indexed column the player wants to make a move in
+     * @param  symbol a character represented the player's symbol
+     * @return true if a valid move was passed, otherwise false
+     */
     public MoveResult applyTurn(int move, Character symbol) {
-        /**
-         * "Drops" given symbol down column move
-         * @param  move   the 0-indexed column the player wants to make a move in
-         * @param  symbol a character represented the player's symbol
-         * @return true if a valid move was passed, otherwise false
-         */
-
         if (move >= this.getColumnCount()) {
             return MoveResult.INVALIDMOVE;
         }
@@ -249,6 +273,10 @@ public class GameBoard {
         return MoveResult.INVALIDMOVE; // Selected column was full so move is invalid.
     }
 
+    /**
+     * 
+     * @return If the board is has empty spaces or not.
+     */
     private boolean isFull() {
         for (Location topLoc : this.board[0]) {
             if (topLoc.isEmpty()) {

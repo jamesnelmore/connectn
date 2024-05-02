@@ -1,3 +1,6 @@
+/**
+ * MenuBar appearing at the top of a ConnectNFrame.
+ */
 package edu.wm.cs.cs301.connectn.view;
 
 import edu.wm.cs.cs301.connectn.ConnectN;
@@ -21,6 +24,10 @@ public class Menu extends JMenuBar {
         this.add(createExitButton());
     }
 
+    /**
+     * 
+     * @return JMenu of "About" and "Instructions" items
+     */
     private JMenu createHelpMenu() {
         JMenu helpMenu = new JMenu("Help");
         
@@ -28,13 +35,17 @@ public class Menu extends JMenuBar {
         aboutItem.addActionListener(event -> new AboutDialog(view));
         helpMenu.add(aboutItem);
 
-        JMenuItem instructionsItem = new JMenuItem("Instructions...");
+        JMenuItem instructionsItem = new JMenuItem("Instructions");
         instructionsItem.addActionListener(event -> view.showInstructions());
         helpMenu.add(instructionsItem);
 
         return helpMenu;
     }
 
+    /**
+     * 
+     * @return JMenu allowing user to start a new game of a specificed difficulty
+     */
     private JMenu createDifficultyMenu() {
         JMenu difficultyMenu = new JMenu("Difficulty");
 
@@ -50,7 +61,7 @@ public class Menu extends JMenuBar {
 
         return difficultyMenu;
     }
-
+    
     private JMenuItem createExitButton() {
         JMenuItem exitButton = new JMenuItem("Exit");
         exitButton.addActionListener(event -> System.exit(0));

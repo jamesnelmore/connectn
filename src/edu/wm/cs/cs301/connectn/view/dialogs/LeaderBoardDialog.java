@@ -1,13 +1,12 @@
+/**
+ * Dialog showing the user past high scores. Is updated when the user sets a new high score.
+ */
 package edu.wm.cs.cs301.connectn.view.dialogs;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -16,20 +15,16 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 
 import edu.wm.cs.cs301.connectn.model.LeaderBoard;
-import edu.wm.cs.cs301.connectn.view.AppFont;
 import edu.wm.cs.cs301.connectn.view.ConnectNFrame;
 
 
 public class LeaderBoardDialog extends JDialog {
+	private static final long serialVersionUID = 638681900507655747L;
 	private final MainPanel mainPanel;
-	private final ConnectNFrame view;
-	
 	public LeaderBoardDialog(ConnectNFrame view) {
-//		super(view.getFrame(), "Leaderboard", true);
 		super();
 		this.setTitle("Leaderboard");
-		this.view = view;
-        mainPanel = new MainPanel();
+		mainPanel = new MainPanel();
         
         add(mainPanel, BorderLayout.CENTER);
         

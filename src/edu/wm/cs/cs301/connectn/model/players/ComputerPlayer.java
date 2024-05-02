@@ -14,9 +14,15 @@ public class ComputerPlayer implements Player {
         this.symbol = symbol;
     }
 
+    /**
+     * Requests a move from the computer. Does not apply the move.
+     * 
+     * @param board the game board the computer will play on. Passed for informational purposes only, will not be mutated.
+     * 
+     * @return the column the computer would like to play in
+     */
     @Override
     public int takeTurn(GameBoard board) {
-        // TODO implement
         return followStrategy(board);
     }
 
@@ -41,6 +47,11 @@ public class ComputerPlayer implements Player {
         return topMove;
     }
 
+    /**
+     * Counts the longest consecutuve chain of symbols in board. Used to determine move.
+     * @param board board to examine
+     * @return length of chain
+     */
     private int scoreBoard(GameBoard board) {
         // Count longest consecutive chain of symbols
         Location[][] rows = board.board;
@@ -85,7 +96,7 @@ public class ComputerPlayer implements Player {
         return topInARow;
     }
 
-        @Override
+    @Override
     public Character getSymbol() {
         return this.symbol;
     }

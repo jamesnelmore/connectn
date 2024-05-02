@@ -1,3 +1,6 @@
+/**
+ * The main controller of the program. Updates model when a column is selected.
+ */
 package edu.wm.cs.cs301.connectn.controller;
 
 import edu.wm.cs.cs301.connectn.model.ConnectNGame;
@@ -15,6 +18,12 @@ public class GameButtonAction extends AbstractAction {
     private static final long serialVersionUID = -8673720832690380128L;
 	private final ConnectNFrame view;
     private final ConnectNGame game;
+    
+    /**
+     * @param view The ConnectNFrame to listen for.
+     * 
+     * @param game The model to update.
+     */
     public GameButtonAction(ConnectNFrame view, ConnectNGame game) {
         this.view = view;
         this.game = game;
@@ -30,8 +39,12 @@ public class GameButtonAction extends AbstractAction {
         view.repaintPanel();
     }
 
+    /**
+     * Checks for win conditions and queries Computer for turn.
+     * 
+     * @param moveResult The result of the user's turn.
+     */
     private void handleHumanMoveResult(GameBoard.MoveResult moveResult) {
-        ConnectNGame.GameResult gameResult;
         switch (moveResult) {
             case INVALIDMOVE: // in theory not possible
                 throw new IllegalStateException("Invalid move");
@@ -50,6 +63,10 @@ public class GameButtonAction extends AbstractAction {
         }
     }
 
+    /**
+     * Checks for win conditions after computer's turn.
+     * @param computerMoveResult result of the computer's move.
+     */
     private void handleComputerMoveResult(GameBoard.MoveResult computerMoveResult) {
 
         switch (computerMoveResult) {
@@ -67,6 +84,10 @@ public class GameButtonAction extends AbstractAction {
         }
     }
 
+    /**
+     * Handles Leader board and PlayAgainDialog logic at end of game
+     * @param gameResult Final game status of game.
+     */
     private void handleGameEnd(ConnectNGame.GameResult gameResult) {
     	GameMode gameMode = game.getGameMode();
     	int turns = game.getTurn();
@@ -74,6 +95,8 @@ public class GameButtonAction extends AbstractAction {
     	
     	Boolean showHighScore = (gameResult == GameResult.WIN)  && (turns < oldHighScore || oldHighScore == 0);
     	
-        PlayAgainDialog playAgainDialog = new PlayAgainDialog(view, gameResult, showHighScore);
-        }
+        new PlayAgainDialog(view, gameResult, showHighScore);
+        
     }
+    
+}

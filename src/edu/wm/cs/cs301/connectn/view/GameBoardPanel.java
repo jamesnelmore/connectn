@@ -1,3 +1,6 @@
+/**
+ * Panel showing the game board. Creates and manages a grid of rectanges, filling them in to represent the attached ConnectNGame.
+ */
 package edu.wm.cs.cs301.connectn.view;
 
 import edu.wm.cs.cs301.connectn.model.ConnectNGame;
@@ -16,13 +19,11 @@ public class GameBoardPanel extends JPanel {
 
     private final ConnectNGame model;
 
-    private final ConnectNFrame view;
-
     @Serial
     private static final long serialVersionUID = 368734339387680409L;
+    
     public GameBoardPanel(ConnectNFrame view, ConnectNGame model, int width) {
         this.model = model;
-        this.view = view;
         this.topMargin = 0;
         this.cellWidth = 64;
         this.insets = new Insets(0, 6, 6, 6);
@@ -35,27 +36,7 @@ public class GameBoardPanel extends JPanel {
 
         this.grid = calculateRectangles();
     }
-
-    private Rectangle[][] calculateRectangles() {
-        Rectangle[][] grid = new Rectangle[model.getMaximumRows()][model
-                .getColumnCount()];
-
-        int x = leftMargin;
-        int y = topMargin;
-
-        for (int row = 0; row < model.getMaximumRows(); row++) {
-            for (int column = 0; column < model.getColumnCount(); column++) {
-                grid[row][column] = new Rectangle(x, y, cellWidth,
-                        cellWidth);
-                x += cellWidth + insets.right;
-            }
-            x = leftMargin;
-            y += cellWidth + insets.bottom;
-        }
-
-        return grid;
-    }
-
+    
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -78,11 +59,40 @@ public class GameBoardPanel extends JPanel {
         }
     }
 
-    private void drawOutline(Graphics2D g2d, Rectangle r) {
-        int x = r.x + 1;
-        int y = r.y + 1;
-        int width = r.width - 2;
-        int height = r.height - 2;
+    /**
+     * Creates rectangles of the appropriate size to represent grid squares of the board.
+     * @return array of rectangles in shape of the game board.
+     */
+    private Rectangle[][] calculateRectangles() {
+        Rectangle[][] grid = new Rectangle[model.getMaximumRows()][model
+                .getColumnCount()];
+
+        int x = leftMargin;
+        int y = topMargin;
+
+        for (int row = 0; row < model.getMaximumRows(); row++) {
+            for (int column = 0; column < model.getColumnCount(); column++) {
+                grid[row][column] = new Rectangle(x, y, cellWidth,
+                        cellWidth);
+                x += cellWidth + insets.right;
+            }
+            x = leftMargin;
+            y += cellWidth + insets.bottom;
+        }
+
+        return grid;
+    }
+
+    /**
+     * Draws outline around the provided rectangle
+     * @param g2d Graphics2D object used to interact with user space
+     * @param rect rectangle to outline
+     */
+    private void drawOutline(Graphics2D g2d, Rectangle rect) {
+        int x = rect.x + 1;
+        int y = rect.y + 1;
+        int width = rect.width - 2;
+        int height = rect.height - 2;
         Color outlineColor = new Color(211, 214, 218);
         g2d.setColor(outlineColor);
         g2d.setStroke(new BasicStroke(3f));
@@ -92,14 +102,20 @@ public class GameBoardPanel extends JPanel {
         g2d.drawLine(x + width, y, x + width, y + height);
     }
 
+    /**
+     * Draws a player's symbol in the rectangle.
+     * @param g2d Graphics2D object used to interact with user space
+     * @param location location object represented by rect
+     * @param rect rectangle the user will see
+     * @param titleFont font to draw the symbol in
+     */
     private void drawCell(Graphics2D g2d,
-                          Location location, Rectangle r, Font titleFont) {
+                          Location location, Rectangle rect, Font titleFont) {
         if (location != null) {
-//            g2d.setColor(wordleResponse.getBackgroundColor());
-            g2d.fillRect(r.x, r.y, r.width, r.height);
+            g2d.fillRect(rect.x, rect.y, rect.width, rect.height);
             g2d.setColor(Color.BLACK);
             drawCenteredString(g2d,
-                    Character.toString(location.getToken()), r, titleFont);
+                    Character.toString(location.getToken()), rect, titleFont);
         }
     }
 

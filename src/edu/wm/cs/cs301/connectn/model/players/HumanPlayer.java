@@ -1,6 +1,6 @@
 /**
- * The user's player in a ConnectNGame. Takes input from the user and validates it.
- * Does not allow user to make an invalid move.
+ * The user's player in a ConnectNGame. Stores user's symbol.
+ * Does not make moves for player, but left to provide way for AI to assist with move selection.
  */
 package edu.wm.cs.cs301.connectn.model.players;
 
@@ -14,7 +14,6 @@ public class HumanPlayer implements Player {
 
     @Override
     public int takeTurn(GameBoard board) {
-        // TODO
         return 0;
     }
 

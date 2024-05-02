@@ -1,3 +1,6 @@
+/**
+ * Set of fonts used in UI. Aggregated for reuse and visual consistency.
+ */
 package edu.wm.cs.cs301.connectn.view;
 
 import java.awt.*;

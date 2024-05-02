@@ -1,3 +1,6 @@
+/**
+ * Panel of buttons the user uses to select a column to play in.
+ */
 package edu.wm.cs.cs301.connectn.view;
 
 import edu.wm.cs.cs301.connectn.controller.GameButtonAction;

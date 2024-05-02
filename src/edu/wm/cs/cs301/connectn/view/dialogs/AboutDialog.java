@@ -1,3 +1,6 @@
+/**
+ * Displays information about the application.
+ */
 package edu.wm.cs.cs301.connectn.view.dialogs;
 
 import java.awt.BorderLayout;
@@ -10,7 +13,9 @@ import edu.wm.cs.cs301.connectn.view.AppFont;
 import edu.wm.cs.cs301.connectn.view.ConnectNFrame;
 
 public class AboutDialog extends JDialog {
-    public AboutDialog(ConnectNFrame view) {
+    private static final long serialVersionUID = 1856329864973204328L;
+
+	public AboutDialog(ConnectNFrame view) {
     	this.setLayout(new BorderLayout());
     	
     	JLabel title = new JLabel("ConnectN");

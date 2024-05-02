@@ -1,8 +1,12 @@
+/**
+ * Appears at end of game. Informs the user of win/lose/tie, and new high score.
+ * If appropriate, allows user to save high score to the leaderboard.
+ * Allows user to play another game or exit application.
+ */
 package edu.wm.cs.cs301.connectn.view.dialogs;
 
 import edu.wm.cs.cs301.connectn.ConnectN;
 import edu.wm.cs.cs301.connectn.model.ConnectNGame;
-import edu.wm.cs.cs301.connectn.model.GameBoard;
 import edu.wm.cs.cs301.connectn.model.GameMode;
 import edu.wm.cs.cs301.connectn.model.LeaderBoard;
 import edu.wm.cs.cs301.connectn.view.AppFont;
@@ -19,6 +23,12 @@ public class PlayAgainDialog extends JDialog {
     private final ConnectNGame model;
     ConnectNGame.GameResult gameResult;
 
+    /**
+     * 
+     * @param oldFrame the ConnectNFrame of the completed game.
+     * @param gameResult Whether or not the player won, lost, or tied.
+     * @param newHighScore Whether or not the user set a high score.
+     */
     public PlayAgainDialog(ConnectNFrame oldFrame, ConnectNGame.GameResult gameResult, boolean newHighScore) {
         super(oldFrame.getFrame(), "Play Again", false);
         this.oldFrame = oldFrame;
@@ -48,7 +58,10 @@ public class PlayAgainDialog extends JDialog {
         setVisible(true);
 
     }
-    
+    /**
+     * Creates message informing player of win/loss/tie.
+     * @return JPanel with message.
+     */
     private JPanel createMessagePanel() {
         JPanel panel = new JPanel(new FlowLayout());
         panel.setBorder(BorderFactory.createEmptyBorder(0, 5, 5, 5));
@@ -62,6 +75,10 @@ public class PlayAgainDialog extends JDialog {
         return panel;
     }
     
+    /**
+     * 
+     * @return JLabel with the numbers of turns of the game.
+     */
     private JLabel createMoveText() {
     	int turns = model.getTurn();
     	JLabel text = new JLabel("In " + turns + " Moves");
@@ -69,6 +86,10 @@ public class PlayAgainDialog extends JDialog {
     	return text;
     }
 
+    /**
+     * 
+     * @return JPanel with a text field for the user to enter their name for the leaderboard.
+     */
     private JPanel createHighScoreEntryPanel() {
     	JPanel panel = new JPanel();
     	panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -93,6 +114,10 @@ public class PlayAgainDialog extends JDialog {
     	return panel;
     }
     
+    /**
+     * 
+     * @return JPanel of exit and play again buttons.
+     */
     private JPanel createButtonPanel() {
        JPanel buttonPanel = new JPanel(new FlowLayout());
 

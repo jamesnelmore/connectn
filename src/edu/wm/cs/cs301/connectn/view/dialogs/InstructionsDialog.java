@@ -1,3 +1,6 @@
+/**
+ * Shows instructions to user for playing game.
+ */
 package edu.wm.cs.cs301.connectn.view.dialogs;
 
 import edu.wm.cs.cs301.connectn.view.ConnectNFrame;
@@ -23,10 +26,8 @@ import javax.swing.KeyStroke;
 
 public class InstructionsDialog extends JDialog {
 
-    private static final long serialVersionUID = 1L;
-
-    private final CancelAction cancelAction;
-
+    private static final long serialVersionUID = 5283895279020555816L;
+	private final CancelAction cancelAction;
     private JEditorPane editorPane;
 
     public InstructionsDialog(ConnectNFrame view) {
@@ -63,6 +64,10 @@ public class InstructionsDialog extends JDialog {
         return panel;
     }
 
+    /**
+     * 
+     * @return JPanel containing "done" button to close the window.
+     */
     private JPanel createButtonPanel() {
         JPanel panel = new JPanel(new FlowLayout());
         panel.setBorder(BorderFactory.createEmptyBorder(0, 5, 5, 5));
@@ -79,11 +84,14 @@ public class InstructionsDialog extends JDialog {
         return panel;
     }
 
+    /**
+     * Action used to close the dialog.
+     */
     private class CancelAction extends AbstractAction {
 
-        private static final long serialVersionUID = 1L;
+        private static final long serialVersionUID = 1908595140095812249L;
 
-        @Override
+		@Override
         public void actionPerformed(ActionEvent event) {
             dispose();
         }

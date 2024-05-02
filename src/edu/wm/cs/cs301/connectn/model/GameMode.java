@@ -1,3 +1,6 @@
+/**
+ * Set of named row/column/N configurations that can be played in the game.
+ */
 package edu.wm.cs.cs301.connectn.model;
 
 public enum GameMode {

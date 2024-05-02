@@ -7,9 +7,6 @@ package edu.wm.cs.cs301.connectn.model;
 import edu.wm.cs.cs301.connectn.model.GameBoard.MoveResult;
 import edu.wm.cs.cs301.connectn.model.players.ComputerPlayer;
 import edu.wm.cs.cs301.connectn.model.players.HumanPlayer;
-import edu.wm.cs.cs301.connectn.model.players.Player;
-
-import static edu.wm.cs.cs301.connectn.model.GameBoard.MoveResult.*;
 
 public class ConnectNGame {
     private final HumanPlayer humanPlayer;

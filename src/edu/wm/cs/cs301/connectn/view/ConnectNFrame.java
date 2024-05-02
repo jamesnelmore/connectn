@@ -1,9 +1,9 @@
+/**
+ * Main UI frame showing a ConnectNGame. Manages other UI elements.
+ */
 package edu.wm.cs.cs301.connectn.view;
 
-import edu.wm.cs.cs301.connectn.ConnectN;
 import edu.wm.cs.cs301.connectn.model.ConnectNGame;
-import edu.wm.cs.cs301.connectn.model.GameMode;
-import edu.wm.cs.cs301.connectn.view.dialogs.AboutDialog;
 import edu.wm.cs.cs301.connectn.view.dialogs.InstructionsDialog;
 import edu.wm.cs.cs301.connectn.view.dialogs.LeaderBoardDialog;
 
@@ -40,6 +40,7 @@ public class ConnectNFrame {
         });
 
     }
+    
     private JFrame createAndShowGUI() {
         JFrame frame = new JFrame("ConnectN");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,6 +60,9 @@ public class ConnectNFrame {
         return frame;
     }
     
+    /**
+     * Panel showing the turn counter.
+     */
     private class MoveCounterPanel extends JPanel {
     	private static final long serialVersionUID = 1696508320122726885L;
 		private int turns;
@@ -86,7 +90,6 @@ public class ConnectNFrame {
     	}
     	
     }
-    
 
     public JFrame getFrame() {
         return frame;
