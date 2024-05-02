@@ -8,7 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Menu extends JMenuBar {
-    private final ConnectNFrame view;
+    private static final long serialVersionUID = -1560115197470429859L;
+	private final ConnectNFrame view;
 
     public Menu(ConnectNFrame view) {
         super();
@@ -22,14 +23,14 @@ public class Menu extends JMenuBar {
 
     private JMenu createHelpMenu() {
         JMenu helpMenu = new JMenu("Help");
+        
+        JMenuItem aboutItem = new JMenuItem("About...");
+        aboutItem.addActionListener(event -> new AboutDialog(view));
+        helpMenu.add(aboutItem);
 
         JMenuItem instructionsItem = new JMenuItem("Instructions...");
         instructionsItem.addActionListener(event -> view.showInstructions());
         helpMenu.add(instructionsItem);
-
-        JMenuItem aboutItem = new JMenuItem("About...");
-        aboutItem.addActionListener(event -> new AboutDialog(view));
-        helpMenu.add(aboutItem);
 
         return helpMenu;
     }

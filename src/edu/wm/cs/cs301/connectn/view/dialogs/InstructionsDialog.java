@@ -72,7 +72,7 @@ public class InstructionsDialog extends JDialog {
         ActionMap actionMap = panel.getActionMap();
         actionMap.put("cancelAction", cancelAction);
 
-        JButton button = new JButton("Cancel");
+        JButton button = new JButton("Done");
         button.addActionListener(cancelAction);
         panel.add(button);
 
