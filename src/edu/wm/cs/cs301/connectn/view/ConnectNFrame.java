@@ -5,6 +5,7 @@ import edu.wm.cs.cs301.connectn.model.ConnectNGame;
 import edu.wm.cs.cs301.connectn.model.GameMode;
 import edu.wm.cs.cs301.connectn.view.dialogs.AboutDialog;
 import edu.wm.cs.cs301.connectn.view.dialogs.InstructionsDialog;
+import edu.wm.cs.cs301.connectn.view.dialogs.LeaderBoardDialog;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,6 +28,8 @@ public class ConnectNFrame {
         this.moveCounterPanel = new MoveCounterPanel();
 
         this.frame = createAndShowGUI();
+        
+        new LeaderBoardDialog(this);
 
     }
     private JFrame createAndShowGUI() {
@@ -68,6 +71,7 @@ public class ConnectNFrame {
             g.setFont(AppFont.TEXT.font);
             g.drawString("Turn " + turns, x, y); // Draw the text at position (10, 50)
         }
+    	
     	public void incrementCounter() {
     		turns += 1;
     		this.repaint();

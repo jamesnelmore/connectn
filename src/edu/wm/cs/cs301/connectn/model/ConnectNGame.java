@@ -40,12 +40,10 @@ public class ConnectNGame {
     }
 
     public int getColumnCount() {
-        // todo
         return gameMode.columns;
     }
 
     public int getMaximumRows() {
-        //todo
         return gameMode.rows;
     }
 
